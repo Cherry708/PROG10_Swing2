@@ -9,13 +9,55 @@ public class Ejercicio11 {
     private JButton btnReiniciar;
     private JLabel lblNumeroPasajeros;
     private JTextField txtNumeroPasajeros;
-    private int numeroPasajeros = 0;
+    private int numeroPasajeros;
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Ejercicio11");
+        frame.setContentPane(new Ejercicio11().panel1);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 
     public Ejercicio11() {
-        btnSubePasajero.addActionListener(new ActionListener() {
+        numeroPasajeros = 0;
+        txtNumeroPasajeros.setText(String.valueOf(numeroPasajeros));
+
+        btnSubePasajero.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 numeroPasajeros++;
+                txtNumeroPasajeros.setText(String.valueOf(numeroPasajeros));
+                if (numeroPasajeros > 20) {
+                    try {
+                        throw new Exception();
+                    } catch (Exception e){
+                        txtNumeroPasajeros.setText("Has alcanzado el aforo máximo.");
+                        numeroPasajeros = 21;
+                    }
+                }
+            }
+        });
+        btnBajaPasajero.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                numeroPasajeros--;
+                txtNumeroPasajeros.setText(String.valueOf(numeroPasajeros));
+                if (numeroPasajeros <= 0) {
+                    try {
+                        throw new Exception();
+                    } catch (Exception e){
+                        txtNumeroPasajeros.setText("El número de pasajeros no puede ser inferior a 0.");
+                        numeroPasajeros = 0;
+                    }
+                }
+            }
+        });
+        btnReiniciar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                numeroPasajeros = 0;
+                txtNumeroPasajeros.setText(String.valueOf(numeroPasajeros));
             }
         });
     }
