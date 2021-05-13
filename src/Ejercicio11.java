@@ -15,7 +15,7 @@ public class Ejercicio11 {
         JFrame frame = new JFrame("Ejercicio11");
         frame.setContentPane(new Ejercicio11().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(600,400);
         frame.setVisible(true);
     }
 
@@ -43,7 +43,7 @@ public class Ejercicio11 {
             public void actionPerformed(ActionEvent actionEvent) {
                 numeroPasajeros--;
                 txtNumeroPasajeros.setText(String.valueOf(numeroPasajeros));
-                if (numeroPasajeros <= 0) {
+                if (numeroPasajeros < 0) {
                     try {
                         throw new Exception();
                     } catch (Exception e){
