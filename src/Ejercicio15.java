@@ -1,4 +1,5 @@
 import javax.swing.*; //Heredada de JFrame
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,10 +12,13 @@ public class Ejercicio15 extends JFrame implements ActionListener {
     JMenuBar mnb1;
     //Elementos0 de la barra
     JMenu mnuControles;
+    //Elementos1 contenidos en los elementos0
     JMenu mnuTamaño;
-    //Elementos contenidos en los elementos0
+    JMenu mnuColor;
+    //Elementos2 contenidos en elementos1
     JMenuItem mnuItmBajaRes;
     JMenuItem mnuItmAltaRes;
+    JMenuItem mnuItmMaxRes;
     JMenuItem mnuItmVerde;
     JMenuItem mnuItmRojo;
 
@@ -31,12 +35,14 @@ public class Ejercicio15 extends JFrame implements ActionListener {
 
         //Instanciamos los componentes
         mnb1 = new JMenuBar();
-        mnuControles = new JMenu();
-        mnuTamaño = new JMenu();
-        mnuItmBajaRes = new JMenuItem();
-        mnuItmAltaRes = new JMenuItem();
-        mnuItmVerde = new JMenuItem();
-        mnuItmRojo = new JMenuItem();
+        mnuControles = new JMenu("Controles");
+        mnuTamaño = new JMenu("Tamaño");
+        mnuColor = new JMenu("Color");
+        mnuItmBajaRes = new JMenuItem("854x480");
+        mnuItmAltaRes = new JMenuItem("1280x720");
+        mnuItmMaxRes = new JMenuItem("Máxima resolución");
+        mnuItmVerde = new JMenuItem("Verde");
+        mnuItmRojo = new JMenuItem("Rojo");
 
         //Asocia el objeto JMenuBar al JFrame
         /*
@@ -49,25 +55,21 @@ public class Ejercicio15 extends JFrame implements ActionListener {
         //Asocia el objeto JMenu al objeto JMenuBar
         //Y le añadimos un texto
         mnb1.add(mnuControles);
-        mnuControles.setText("Controles");
-        mnb1.add(mnuTamaño);
-        mnuTamaño.setText("Tamaño");
+        mnuControles.add(mnuTamaño);
+        mnuControles.add(mnuColor);
 
         //Asocia el objeto JMenuItem al objeto JMenu
-        mnuControles.add(mnuItmAltaRes);
-        mnuItmAltaRes.setText("AltaRes");
-        mnuItmBajaRes.setText("BajaRes");
-        mnuControles.add(mnuItmBajaRes);
-        mnuTamaño.add(mnuItmVerde);
-        mnuTamaño.add(mnuItmRojo);
+        mnuTamaño.add(mnuItmAltaRes);
+        mnuTamaño.add(mnuItmBajaRes);
+        mnuTamaño.add(mnuItmMaxRes);
+        mnuColor.add(mnuItmVerde);
+        mnuColor.add(mnuItmRojo);
 
         //Asocia el evento ActionListener a los objetos JMenuItem
         mnuItmAltaRes.addActionListener(this);
         mnuItmBajaRes.addActionListener(this);
         mnuItmVerde.addActionListener(this);
         mnuItmRojo.addActionListener(this);
-
-
     }
 
 
@@ -75,6 +77,25 @@ public class Ejercicio15 extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
+        if (actionEvent.getSource().equals(mnuItmAltaRes)){
+            setSize(1280,720);
+            setLocationRelativeTo(null);
+        }
+        if (actionEvent.getSource().equals(mnuItmBajaRes)){
+            setSize(854,480);
+            setLocationRelativeTo(null);
+        }
+        if (actionEvent.getSource().equals(mnuItmMaxRes)){
+         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+         setSize(dimension);
+         setLocationRelativeTo(null);
+        }
+        if (actionEvent.getSource().equals(mnuItmRojo)){
+            getContentPane().setBackground(new Color(255,0,0));
+        }
+        if (actionEvent.getSource().equals(mnuItmVerde)){
+            getContentPane().setBackground(new Color(0,255,0));
+        }
     }
 
     public static void main(String[] args){
@@ -87,6 +108,7 @@ public class Ejercicio15 extends JFrame implements ActionListener {
         frm1.setTitle("Ejercicio15");
         frm1.setBounds(ejeXEsquinaIzq, ejeYEsquinaIzq, ancho, alto);
         frm1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frm1.setLocationRelativeTo(null);
         frm1.setVisible(true);
     }
 
