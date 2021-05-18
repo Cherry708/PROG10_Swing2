@@ -119,6 +119,20 @@ public class Ejercicio16 {
                 getOperator(btnText);
             }
         });
+        btnDivide.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String btnText = btnDivide.getText();
+                getOperator(btnText);
+            }
+        });
+        btnMultiply.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String btnText = btnMultiply.getText();
+                getOperator(btnText);
+            }
+        });
         btnEquals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -149,7 +163,6 @@ public class Ejercicio16 {
                 btnPunto.setEnabled(true);
             }
         });
-
     }
 
     public static void main(String[] args) {
