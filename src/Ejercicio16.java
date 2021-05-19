@@ -136,7 +136,15 @@ public class Ejercicio16 {
         btnEquals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                total2 = total1 + Double.parseDouble(txtDisplay.getText());
+                if (mathOperator == '+'){
+                    total2 = total1 + Double.parseDouble(txtDisplay.getText());
+                } else if (mathOperator == '-'){
+                    total2 = total1 - Double.parseDouble(txtDisplay.getText());
+                } else if (mathOperator == '/'){
+                    total2 = total1 / Double.parseDouble(txtDisplay.getText());
+                } else if (mathOperator == '*'){
+                    total2 = total1 * Double.parseDouble(txtDisplay.getText());
+                }
                 txtDisplay.setText(String.valueOf(total2));
                 total1 = 0.0;
             }
